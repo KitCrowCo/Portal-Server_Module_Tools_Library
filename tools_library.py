@@ -40,7 +40,7 @@ def _manifest(folder: Path) -> dict:
 
 def _list_tools() -> list:
     if not DIST_DIR.exists(): return []
-    return sorted(({"name": d.name, **_manifest(d)} for d in DIST_DIR.iterdir() if d.is_dir()), key=lambda t: t["label"])
+    return sorted(({"name": d.name, **_manifest(d)} for d in DIST_DIR.iterdir() if d.is_dir() and not d.name.startswith(".")), key=lambda t: t["label"])
 
 # --- Git sources ---
 
